@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+html {
+  box-sizing: border-box;
+  font-family: "Poppins" sans-serif;
+  font-style: normal;
+}
+.full--shadow {
+  fill: #fff;
+  stroke-width: 0.704px;
+  stroke: rgba(128, 0, 255, 0.6);
+  filter: drop-shadow(2px 2px 9px rgba(51, 0, 101, 0.25))
+    drop-shadow(-2px -2px 9px rgba(51, 0, 101, 0.25));
+}

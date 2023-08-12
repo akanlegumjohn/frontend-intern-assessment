@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.32.6",
+    "axios": "^1.4.0",
     "framer-motion": "^10.15.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-parallax-tilt": "^1.7.158",
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
