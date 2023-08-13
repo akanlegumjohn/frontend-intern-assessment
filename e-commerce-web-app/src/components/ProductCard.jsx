@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
+import { containerVariants, productImageVariants } from "../utils/animation";
 import ratingStar from "../assets/ratingStar.svg";
 
 export const ProductCard = ({
@@ -12,14 +14,21 @@ export const ProductCard = ({
   id,
 }) => {
   return (
-    <div className=" bg-white full--shadow w-full  p-4 rounded-md ">
-      <div className=" rounded-md">
-        <img
-          className=" min-w-full h-40 object-cover rounded-md cursor-pointer"
+    <motion.div
+      className=" bg-white full--shadow w-full  p-4 rounded-md "
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover="hover"
+    >
+      <motion.div className=" rounded-md" variants={productImageVariants}>
+        <motion.img
+          className=" min-w-full h-40 object-cover rounded-md "
           src={image}
           alt={`An image of ${title}`}
+          variants={productImageVariants}
         />
-      </div>
+      </motion.div>
       <div className=" flex flex-col gap-1">
         <p className=" text-black uppercase font-semibold md:text-lg">
           {title}
@@ -49,6 +58,6 @@ export const ProductCard = ({
       >
         View Details
       </Link>
-    </div>
+    </motion.div>
   );
 };

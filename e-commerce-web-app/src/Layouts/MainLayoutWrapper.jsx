@@ -6,6 +6,7 @@ export const CartContext = createContext();
 
 export const MainLayoutWrapper = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [checkoutData, setCheckoutData] = useState({});
 
   // The addToCart function first checks if the product being added to the cart already exists in the cart. If it does, it increments the quantity property of the existing item by 1 using the map method. If it doesn’t, it adds a new item to the cart with a quantity property set to 1. The quantity property is added to keep track of the overall number of products that should be displayed in the cart.
 
@@ -25,7 +26,9 @@ export const MainLayoutWrapper = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, setCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, setCart, checkoutData, setCheckoutData }}
+    >
       <MainLayout>{children}</MainLayout>
     </CartContext.Provider>
   );

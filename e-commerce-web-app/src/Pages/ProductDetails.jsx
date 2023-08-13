@@ -1,11 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { MdVerified } from "react-icons/md";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
+import { productDetailsContainerVariants } from "../utils/animation";
 import { ProductCarousel } from "../components/ProductCarousel";
 import { CartContext } from "../Layouts/MainLayoutWrapper";
 import { getProductData } from "../Hooks/useProducts";
 import ratingStar from "../assets/ratingStar.svg";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export const ProductDetails = () => {
   const { productId } = useParams();
@@ -14,7 +18,7 @@ export const ProductDetails = () => {
   const { addToCart, cart } = useContext(CartContext);
 
   if (isLoading) {
-    return <h1>Loading ....</h1>;
+    return <LoadingSpinner />;
   }
 
   const {
@@ -30,11 +34,14 @@ export const ProductDetails = () => {
   } = data;
 
   const productExists = cart.find((product) => product.id === id);
-  console.log(productExists);
-  console.log(cart);
 
   return (
-    <section className=" flex  gap-10 h-full  ">
+    <motion.section
+      className=" flex flex-col md:flex-row gap-10 h-full  "
+      variants={productDetailsContainerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div className=" w-full h-full">
         <ProductCarousel product={data} />
       </div>
@@ -71,6 +78,7 @@ export const ProductDetails = () => {
           disabled={productExists}
           onClick={() => {
             addToCart(data);
+            toast.success(`You successfully added ${title} to cart`);
           }}
           className={` text-white py-2 rounded-md font-semibold text-lg  hover:bg-orange-600 bg-orange-500 ${
             productExists &&
@@ -80,6 +88,6 @@ export const ProductDetails = () => {
           Add to Cart
         </button>
       </div>
-    </section>
+    </motion.section>
   );
 };

@@ -8,12 +8,11 @@ export const Navbar = () => {
   const { cart } = useContext(CartContext);
 
   const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-  console.log(cart);
 
   return (
-    <nav className=" flex full--shadow justify-between items-center h-14 px-6 bg-black fixed w-full z-50 text-white">
-      <NavLink to="/">Nita Express</NavLink>
-      <NavLink to="/cart">
+    <nav className=" flex full--shadow justify-between items-center h-14 px-6 bg-gray-700 fixed w-full z-50 text-white">
+      <NavLink to="/">Virl Express</NavLink>
+      <NavLink to="/checkout">
         <span className=" relative">
           <FiShoppingCart className=" hover:text-orange-400" />
           {itemCount > 0 && (

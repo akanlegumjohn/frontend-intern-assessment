@@ -4,8 +4,8 @@ export const ProductCarousel = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   return (
-    <div className="flex gap-4">
-      <div className="flex flex-col items-center mt-4 space-y-2 overflow-y-auto justify-center">
+    <div className="flex gap-4 flex-col-reverse md:flex-row">
+      <div className="flex flex-row flex-wrap md:flex-col items-center mt-4 space-y-2 overflow-y-auto justify-center">
         {product.images.map((image) => (
           <img
             key={image}

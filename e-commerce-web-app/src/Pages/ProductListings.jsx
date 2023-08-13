@@ -1,16 +1,15 @@
 import { getAllProductsData } from "../Hooks/useProducts";
 import { ProductCard } from "../components/ProductCard";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export const ProductListings = () => {
   const { data, isLoading } = getAllProductsData();
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <LoadingSpinner />;
   }
   return (
-    <section className=" flex flex-col items-center justify-center">
-      <h1>Select your products</h1>
-
+    <section className=" flex flex-col items-center justify-center ">
       <div className=" lg:grid-cols-4  grid md:grid-cols-3 justify-center items-center gap-10">
         {data.products.map((product) => {
           const {
