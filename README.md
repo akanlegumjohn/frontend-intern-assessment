@@ -11,7 +11,7 @@ An E-commerce website for a products "virl Express" built with ReactJs.
 
 ## Features
 
-- Product Listing displaying:
+- Product Listings page displaying:
   - Product image
   - Discount
   - Price
