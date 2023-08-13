@@ -1,18 +1,21 @@
 import { useParams } from "react-router-dom";
+import { useContext, useState } from "react";
 import { MdVerified } from "react-icons/md";
 
 import { ProductCarousel } from "../components/ProductCarousel";
+import { CartContext } from "../Layouts/MainLayoutWrapper";
 import { getProductData } from "../Hooks/useProducts";
 import ratingStar from "../assets/ratingStar.svg";
 
 export const ProductDetails = () => {
-  const { id } = useParams();
-  const { data, isLoading } = getProductData(Number(id));
+  const { productId } = useParams();
+  const { data, isLoading } = getProductData(Number(productId));
+
+  const { addToCart, cart } = useContext(CartContext);
 
   if (isLoading) {
     return <h1>Loading ....</h1>;
   }
-  console.log(data);
 
   const {
     brand,
@@ -23,25 +26,30 @@ export const ProductDetails = () => {
     stock,
     rating,
     discountPercentage,
+    id,
   } = data;
+
+  const productExists = cart.find((product) => product.id === id);
+  console.log(productExists);
+  console.log(cart);
 
   return (
     <section className=" flex  gap-10 h-full  ">
       <div className=" w-full h-full">
         <ProductCarousel product={data} />
       </div>
-      <div className=" flex flex-col w-full h-full gap-4 ">
-        <p className=" font-semibold text-lg md:text-4xl">{title}</p>
+      <div className=" flex flex-col w-full h-full gap-2 ">
+        <p className=" font-semibold text-lg md:text-4xl capitalize">{title}</p>
         <p className=" flex items-center text-blue-800 font-semibold text-lg">
           {brand}
           <span className=" pl-1">
             {<MdVerified color="green" size={20} />}
           </span>
         </p>
-        <desc className=" border-b-2 py-4  md:text-lg shadow-sm  font-semibold">
+        <p className=" border-b-2 py-2  md:text-lg shadow-sm  font-semibold">
           Description:
           <span className=" text-gray-500 font-normal"> {description}</span>
-        </desc>
+        </p>
         <div className=" flex text-lg md:text-2xl gap-4">
           <p className=" text-black font-semibold">
             GH₵ {Math.round((100 * price) / 100 - discountPercentage)}
@@ -49,7 +57,7 @@ export const ProductDetails = () => {
           <p className="text-gray-500 pr-2 line-through decoration-red-600 ">
             GH₵ {price}
           </p>
-          <p className=" font-semibold  text-orange-500">
+          <p className=" font-semibold   bg-orange-200  rounded-md px-1 text-orange-500">
             {`-${Math.round(discountPercentage)}%`}
           </p>
         </div>
@@ -59,7 +67,16 @@ export const ProductDetails = () => {
           <span className=" pr-1">{rating}</span>
           <img src={ratingStar} alt={` Rating of ${title}`} />
         </div>
-        <button className=" bg-orange-400 hover:bg-orange-600 text-white py-2 rounded-md font-semibold text-lg">
+        <button
+          disabled={productExists}
+          onClick={() => {
+            addToCart(data);
+          }}
+          className={` text-white py-2 rounded-md font-semibold text-lg  hover:bg-orange-600 bg-orange-500 ${
+            productExists &&
+            " hover:bg-orange-300 bg-orange-300 cursor-not-allowed"
+          }`}
+        >
           Add to Cart
         </button>
       </div>

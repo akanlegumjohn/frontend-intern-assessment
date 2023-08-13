@@ -38,7 +38,7 @@ export const ProductCard = ({
           <p className="text-gray-500 pr-2 line-through decoration-red-600 ">
             GH₵{price}
           </p>
-          <p className=" font-semibold  text-orange-500">
+          <p className=" font-semibold bg-orange-200  rounded-md px-1 text-orange-500">
             {`-${Math.round(discountPercentage)}%`}
           </p>
         </div>
