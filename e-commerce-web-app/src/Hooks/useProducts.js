@@ -9,7 +9,7 @@ export const getAllProductsData = () => {
   });
 };
 
-// Whenever the Id changes, there should be a refetch of the product
+// Whenever the Id changes, there should be a refetch of the corresponding  product
 export const getProductData = (id) => {
   return useQuery({
     queryKey: ["product", id],
