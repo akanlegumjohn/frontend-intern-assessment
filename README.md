@@ -7,7 +7,7 @@ An E-commerce website for products "virl Express" built with ReactJs.
 - [Features](#features)
 - [Technologies](#technologies)
 - [Usage](#usage)
-- [designDecisions](#designDecisions)
+- [Design Decisions](#design)
 - [Authors](#authors)
 
 ## Features
